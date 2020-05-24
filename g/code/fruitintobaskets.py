@@ -13,6 +13,8 @@
 #複数の果物の種類の木が並んでいて(treeという配列)、木から果物を撮った場合、右の木に動き、果物をとる。右に動いていき、木がなくなるか、バスケットに入らなくなる(3種類目を取得しようとする)と終了
 #以上の条件の元、取得できるフルーツの最大の値をもとめよ。
 #
+#memo
+#左から配列を読んでいって、2つ前までのフルーツの種類と、１つ前のフルーツの数を覚えておいて、最大値を出せば良い。
 
 class Solution(object):
     def totalFruit(self, tree):
@@ -23,6 +25,12 @@ class Solution(object):
         result_max = 0
 
         for fruit in tree:
+            #fruit 今のフルーツ
+            #last_fruit 一つ前のフルーツ
+            #second_last_fruit ２つ前の
+            #last_fruit_count ひとつ前のフルーツの数
+            #current_max 計算中のmax
+            #result_max currentmaxのうち最大のもの
             if fruit == last_fruit or fruit == second_last_fruit:
                 current_max += 1
             else:
