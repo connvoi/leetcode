@@ -34,29 +34,18 @@
 #        if width != 1:
 #            width -= 1
 #        return height * width 
+##これではtime  limit exceeded
 
-class Solution:
-    def maxArea(self, height: list) -> int:
-        max_size = 0
-        n = len(height)
-        for width in range(n, 1, -1):
-            start = n - width
-            while start >= 0:
-                current_max = self.calc_area(height[start],height[start+width-1], width)
-                start -= 1 
-                if current_max > max_size:
-                    max_size = current_max
-        return max_size
-
-    def calc_area(self, height_1:int, height_2:int, width:int) -> int:
-        if height_1 < height_2:
-            height = height_1
-        else:
-            height = height_2
-
-        return height * (width -1 )
-
-        
+class Solution(object):
+    def maxArea(self, s):
+        maxarea, l, r = 0, 0 , len(s) - 1
+        while (l < r) :
+            maxarea = max(maxarea, min(s[l], s[r]) * (r - l))
+            if s[l] < s[r] :
+                l+=1
+            else:
+                r-=1
+        return maxarea
 
 
 solution = Solution()
