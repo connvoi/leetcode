@@ -17,22 +17,22 @@
 #https://dev.classmethod.jp/articles/longest-substring-without-repeating-characters/
 
 
-#class Solution:
-#    def lengthOfLongestSubstring(self, s: str) -> int:
-#        window = set()
-#        max_size = 0
-#        i, j, n = 0, 0, len(s)
-#        while i < n and j < n:
-#            #windowのdictないにs[j]がない時はwindowに追加し、ある時はdiscardで捨て、i++でウインドウの開始点をずらす。
-#            #これを文字列に対してやっていく。
-#            if s[j] not in window:
-#                window.add(s[j])
-#                max_size = max(len(window), max_size)
-#                j += 1
-#            else:
-#                window.discard(s[i])
-#                i += 1
-#        return max_size
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        window = set()
+        max_size = 0
+        i, j, n = 0, 0, len(s)
+        while i < n and j < n:
+            #windowのdictないにs[j]がない時はwindowに追加し、ある時はdiscardで捨て、i++でウインドウの開始点をずらす。
+            #これを文字列に対してやっていく。
+            if s[j] not in window:
+                window.add(s[j])
+                max_size = max(len(window), max_size)
+                j += 1
+            else:
+                window.discard(s[i])
+                i += 1
+        return max_size
 
 solution = Solution()
 #print(solution.lengthOfLongestSubstring('abcabcbb'))
