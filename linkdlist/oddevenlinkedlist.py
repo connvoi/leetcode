@@ -51,62 +51,73 @@ class Solution:
     '''
     def oddEvenList(self, node: ListNode) -> ListNode:
         print('--- debug ---')
-        head = node
-        evenlist = None
-        oddlist = None
         oddevenhead = None
+        oddevenlist = None
+        evenlist = None
+        evenhead = None
+        oddList = None
+        oddhead = None
         count = 1
-        firstflag = 1
+
+        if node == None:
+            return None
 
         while node != None:
-            if node.val % 2 == 0:
-                #even
-                if evenlist == None:
-                    evenlist = ListNode(node.val)
-                    evenhead = evenlist
-                    if oddevenhead == None:
-                        oddevenhead = evenlist
-                        count+=1
-                else: 
-                    to_add = ListNode(node.val)
-                    evenlist.next = to_add
-                    evenlist = evenlist.next
+            if count == 1:
+                oddevenlist = ListNode(node.val)
+                oddevenhead = oddevenlist
+                count+=1
+                node = node.next
+                continue
+
+            if count == 2:
+                evenlist = ListNode(node.val)
+                evenhead = evenlist
+                count+=1
+                node = node.next
+                continue
+
+            if count == 3:
+                oddlist = ListNode(node.val)
+                oddhead = oddlist
+                count+=1
+                node = node.next
+                continue
+                
+            if count % 2 == 0:
+                to_add = ListNode(node.val)
+                evenlist.next = to_add
+                evenlist = evenlist.next
             else:
-                #odd
-                if oddlist == None:
-                    print(node.val)
-                    oddlist = ListNode(node.val)
-                    oddhead = oddlist
-                    if oddevenhead == None:
-                        oddevenhead = oddlist
-                        if count ==1: firstflag = 2
-                else: 
-                    to_add = ListNode(node.val)
-                    oddlist.next = to_add 
-                    oddlist = oddlist.next
+                to_add = ListNode(node.val)
+                oddlist.next = to_add
+                oddlist = oddlist.next
 
             node = node.next
+            count+=1
         
-        if firstflag ==1:
-            evenlist = oddhead
+        if count == 2:
+            return oddevenhead
+        elif count == 3:
+            oddevenhead.next = evenhead
         else:
-            print(firstflag)
-            oddlist = evenhead
-        
+            oddevenhead.next = oddhead
+            oddlist.next = evenhead
         
         print('--- debug end ---')
-        return evenhead
+        return oddevenhead
 
 
 
 
-linkedlist = ListNode(1)
+linkedlist = ListNode(2)
 listmaker = MyLinkedList()
-linkedlist=listmaker.addAtTail(linkedlist,2)
-linkedlist=listmaker.addAtTail(linkedlist,3)
-linkedlist=listmaker.addAtTail(linkedlist,4)
-linkedlist=listmaker.addAtTail(linkedlist,5)
+#linkedlist=listmaker.addAtTail(linkedlist,1)
+#linkedlist=listmaker.addAtTail(linkedlist,3)
+#linkedlist=listmaker.addAtTail(linkedlist,5)
 #linkedlist=listmaker.addAtTail(linkedlist,6)
+#linkedlist=listmaker.addAtTail(linkedlist,4)
+#linkedlist=listmaker.addAtTail(linkedlist,7)
 #listmaker.print_all(linkedlist)
 #print(linkedList.head.next.val)
 solution = Solution()
