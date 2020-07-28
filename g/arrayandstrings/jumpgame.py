@@ -1,18 +1,24 @@
 #https://leetcode.com/explore/interview/card/google/59/array-and-strings/3053/
 
+
 class Solution:
     def canJump(self, nums: list):
-        n = len(nums)
-            
-    def check(self, nums, point, l):
-        for i in range(1,num[point]):
-            if point + i == l:
+        l = len(nums)
+        i,maximum = 0 , 0
+
+        #iを一つずつ勧めていく。それがmaxと同じ値になったら終わり
+        #iを１ずつすすめるのは最小の移動単位が1だから。
+        #隣にうつって、となりのvalue[i] + iと、numsの長さが同じだったらtrueを返す
+        while i <= maximum :
+            maximum  = max([maximum, i + nums[i]])         
+            if maximum >= l - 1:
                 return True
-            
+            i+=1
+        
+        return False
 
-        print(n)
-
-nums = [ 2,3, 1, 1, 4 ]
+#nums = [ 2,3, 1, 1, 4 ]
+nums = [ 3,2,1,0,4 ]
 
 solution = Solution()
-solution.canJump(nums)
+print(solution.canJump(nums))
