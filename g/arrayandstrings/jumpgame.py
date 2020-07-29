@@ -9,6 +9,7 @@ class Solution:
         #iを一つずつ勧めていく。それがmaxと同じ値になったら終わり
         #iを１ずつすすめるのは最小の移動単位が1だから。
         #隣にうつって、となりのvalue[i] + iと、numsの長さが同じだったらtrueを返す
+        #ポインタを左から動かしていって、そのvalueを足してみて配列の最後にたどり着くかを見る
         while i <= maximum :
             maximum  = max([maximum, i + nums[i]])         
             if maximum >= l - 1:
